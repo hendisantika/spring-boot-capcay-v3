@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+    <title>reCAPTCHA v3 测试</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+</head>
+<body>
+<main>
+    <header>
+        <h1>reCAPTCHA v3 测试</h1>
+    </header>
+    <main>
+        <form ) action="/checkV3" id="demo-form" method="POST">
+            <button class="g-recaptcha"
+                    data-action='social'
+                    data-callback='onSubmit'
+                    data-sitekey="site-key">Submit
+            </button>
+        </form>
+    </main>
+    <footer style="margin-top: 100px;">
+        <a href="v2.html">reCAPTCHA v2 测试</a>
+    </footer>
+</main>
+<script src="https://www.recaptcha.net/recaptcha/api.js"></script>
+<script>
+    function onSubmit(token) {
+        document.getElementById("demo-form").submit();
+    }
+</script>
+</body>
+</html>
