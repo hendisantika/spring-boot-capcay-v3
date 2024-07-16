@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+    <title>reCAPTCHA v2 测试</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+</head>
+<body>
+<main>
+    <header>
+        <h1>reCAPTCHA v2 测试</h1>
+    </header>
+    <main>
+        <form action="/checkV2" method="POST">
+            <div class="g-recaptcha" data-sitekey="site-key"></div>
+            <input type="submit" value="提交表单">
+        </form>
+    </main>
+    <footer style="margin-top: 100px;">
+        <a href="/v3.html">reCAPTCHA v3 测试</a>
+    </footer>
+</main>
+<script async defer src="https://www.recaptcha.net/recaptcha/api.js"></script>
+</body>
+</html>
