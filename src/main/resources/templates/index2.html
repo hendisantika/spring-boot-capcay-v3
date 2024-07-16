@@ -1,0 +1,40 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>구글 리캡챠 테스트</title>
+    <script crossorigin="anonymous"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=site-key"></script>
+</head>
+
+<body>
+<form action="/robot" method="get">
+    <input name="name" type="text"/>
+    <input id="g-recaptcha-response" name="g-recaptcha-response" type="text"/>
+    <input type="submit" value="submit"/>
+</form>
+
+<script>
+    $(document).ready(function () {
+        grecaptcha.ready(function () {
+            grecaptcha.execute('site-key', {action: 'login'}).then(function (token) {
+                console.log(token)
+                $.ajax({
+                    url: '${pageContext.servletContext.contextPath}/robot/token',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {'token': token},
+                    success: function (result) {
+                        console.log(result);
+                    },
+                    fail: function (e) {
+                        console.log("fail")
+                    }
+                });// end ajax
+            });
+        });
+    });
+</script>
+</body>
+
+</html>
