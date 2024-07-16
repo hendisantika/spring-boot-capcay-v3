@@ -1,0 +1,7 @@
+spring.application.name: capcay
+app:
+  captcha:
+    recaptcha:
+      default-secret: 6LdJdwQaAAAAALBczp1QblD29uiVggPB19XBEChD # ????????
+      endpoint: "https://www.recaptcha.net/recaptcha/api/siteverify" # API URL
+      default-parameter-name: "g-recaptcha-response" # ????????? reCAPTCHA ? token?
