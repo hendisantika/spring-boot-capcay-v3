@@ -1,0 +1,31 @@
+<html>
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<head>
+    <title>Title</title>
+
+    <script src="https://www.google.com/recaptcha/api.js?render=site-key"></script>
+    <script>
+        function reCaptchaV3() {
+            grecaptcha.ready(function () {
+                // grecaptcha.execute('<YOUR_SITE_KEY>', {action: 'submit'}).then(function(token) {
+                grecaptcha.execute('site-key', {action: 'submit'}).then(function (token) {
+                    $('#token').val(token);
+                });
+            });
+        }
+    </script>
+</head>
+<body>
+
+<form action="/validation" method="post">
+    <button class="g-recaptcha" onclick="reCaptchaV3()" type="button">Received token</button>
+    <br>
+    <textarea id="token" name="token" type="text" value=""></textarea>
+    <br>
+    <button type="submit">Submit</button>
+</form>
+
+</div>
+
+</body>
+</html>
