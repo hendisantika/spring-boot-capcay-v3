@@ -1,5 +1,7 @@
 package id.my.hendisantika.capcay.dto;
 
+import lombok.Data;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -13,6 +15,7 @@ import java.util.Date;
  * Time: 09.50
  * To change this template use File | Settings | File Templates.
  */
+@Data
 public class RecaptchaDTO {
     private boolean success;
     private double score;
