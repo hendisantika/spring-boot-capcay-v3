@@ -26,12 +26,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
     /**
-     * reCAPTCHA v2 验证
+     * reCAPTCHA v2 verification
      * <p>
-     * 通过配置注解 @VerifyCode 中的参数 store 和 verifier 来指定储存器和验证器。
-     * "reCaptchaStore" 为 reCAPTCHA v2 的存储器。
+     * Specify the storage and verifier by configuring the parameters store and verifier in the @VerifyCode annotation.
+     * "reCaptchaStore" is the storage for reCAPTCHA v2.
      *
-     * @param result 验证通过后，传入详细信息
+     * @param result After verification, pass in detailed information
      * @return
      */
     @GetMapping("/checkV2")
@@ -42,12 +42,13 @@ public class TestController {
     }
 
     /**
-     * reCAPTCHA v3 验证
+     * reCAPTCHA v3 verification
      * <p>
-     * "reCaptchaV3Store" 为 reCAPTCHA v3 的存储器。
-     * 注解 ”@Parameter“ 提供了名为 "SECRET" 的参数，值为 reCAPTCHA 的服务端密钥。未指定此参数时将从配置文件加载默认的服务的密钥。
+     * "reCaptchaV3Store" is the storage for reCAPTCHA v3.
+     * The annotation "@Parameter" provides a parameter named "SECRET" whose value is the server-side secret key of reCAPTCHA.
+     * If this parameter is not specified, the default service secret key will be loaded from the configuration file.
      *
-     * @param result 验证通过后，传入详细信息
+     * @param result After verification, detailed information is passed in
      * @return
      */
     @GetMapping("/checkV3")

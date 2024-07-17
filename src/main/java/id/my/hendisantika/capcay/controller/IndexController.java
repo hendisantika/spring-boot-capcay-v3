@@ -32,19 +32,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequiredArgsConstructor
 public class IndexController {
     /**
-     * reCAPTCHA v3 验证
+     * reCAPTCHA v3 verification
      * <p>
-     * "reCaptchaV3Store" 为 reCAPTCHA v3 的存储器。
-     * 注解 ”@Parameter“ 提供了名为 "SECRET" 的参数，值为 reCAPTCHA 的服务端密钥。未指定此参数时将从配置文件加载默认的服务的密钥。
+     * "reCaptchaV3Store" is the storage for reCAPTCHA v3.
+     * The annotation "@Parameter" provides a parameter named "SECRET" whose value is the server-side secret key of reCAPTCHA.
+     * If this parameter is not specified, the default service secret key will be loaded from the configuration file.
      *
-     * @param result 验证通过后，传入详细信息
+     * @param result After verification, detailed information is passed in
      * @return
      */
 //    @GetMapping("/checkV3")
 //    @VerifyCode(store = @Store("reCaptchaV3Store"),
 //            verifier = @Verifier("reCaptchaVerifier"),
 //            parameters = {
-//                    @Parameter(name = "SECRET", value = "6LdV3iMpAAAAAMP0dCeWqByWdP3IN5ll0AT6kzSt")
+//                    @Parameter(name = "SECRET", value = "SECRET_KEY")
 //            }
 //    )
 //    public String v3(@CodeValue ReCaptchaV3Result result) {
@@ -55,11 +56,12 @@ public class IndexController {
     public static final String SECRET_KEY = "<YOUR_SECRET_KEY>";
     public static final String SITE_VERIFY_URL = "https://www.google.com/recaptcha/api/siteverify";
     private final RecaptchaService recaptchaService;
+
     @Autowired
     private RestTemplateBuilder builder;
 
     @PostMapping(value = "/validation")
-    public @ResponseBody String ajax(String token) {
+    public @ResponseBody RecaptchaDTO ajax(String token) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 
@@ -69,8 +71,8 @@ public class IndexController {
 
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
 
-        ResponseEntity<String> response = builder.build().postForEntity(SITE_VERIFY_URL, request, String.class);
-
+//        ResponseEntity<String> response = builder.build().postForEntity(SITE_VERIFY_URL, request, String.class);
+        ResponseEntity<RecaptchaDTO> response = builder.build().postForEntity(SITE_VERIFY_URL, request, RecaptchaDTO.class);
         return response.getBody();
     }
 
@@ -79,7 +81,7 @@ public class IndexController {
         return "index2";
     }
 
-    @GetMapping(value = "/robot")
+    @PostMapping(value = "v3/robot/token")
     public @ResponseBody RecaptchaDTO ajaxV3(String token) {
         return recaptchaService.token(token);
     }
