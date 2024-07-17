@@ -1,10 +1,10 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>구글 리캡챠 테스트</title>
+    <title>Google ReCaptcha Test</title>
     <script crossorigin="anonymous"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js?render=site-key"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=YOUR_SITE_KEY"></script>
 </head>
 
 <body>
@@ -17,10 +17,12 @@
 <script>
     $(document).ready(function () {
         grecaptcha.ready(function () {
-            grecaptcha.execute('site-key', {action: 'login'}).then(function (token) {
+            grecaptcha.execute('YOUR_SITE_KEY', {action: 'login'}).then(function (token) {
                 console.log(token)
+                const currentUrl = window.location.href;
                 $.ajax({
-                    url: '${pageContext.servletContext.contextPath}/robot/token',
+                    // url: '${pageContext.servletContext.contextPath}/robot/token',
+                    url: currentUrl + '/robot/token',
                     type: 'POST',
                     dataType: 'json',
                     data: {'token': token},
