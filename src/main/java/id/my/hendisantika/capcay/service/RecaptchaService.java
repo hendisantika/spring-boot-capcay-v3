@@ -31,7 +31,7 @@ public class RecaptchaService {
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
-        map.add("secret", "secret-key");
+        map.add("secret", "SECRET_KEY");
         map.add("response", token);
 
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
